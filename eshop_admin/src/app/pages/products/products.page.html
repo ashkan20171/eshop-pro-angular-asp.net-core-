@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>محصولات</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="12">
+                <div class="table-responsive"
+                     *ngIf="filterProducts.products !== null && filterProducts.products !== undefined && filterProducts.products.length>0">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>شناسه</th>
+                            <th>تصویر</th>
+                            <th>عنوان</th>
+                            <th>دستورات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let product of filterProducts.products">
+                            <td>{{product.id}}</td>
+                            <td>
+                                <img [src]="imagePath + product.imageName" alt=""
+                                     style="border-radius: 50%; width: 75px;height: 75px">
+                            </td>
+                            <td>{{product.productName}}</td>
+                            <td>
+                                <ion-button color="warning" [routerLink]="['/products','edit',product.id]">ویرایش
+                                </ion-button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="alert alert-warning"
+                     *ngIf="filterProducts.products === null || filterProducts.products.length === 0">
+                    <p>هیچ محصولی یافت نشد</p>
+                </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
